@@ -5,9 +5,9 @@
             aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Brand -->
+       <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-
+            <img src="{{ asset('images') }}/logo.png" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">

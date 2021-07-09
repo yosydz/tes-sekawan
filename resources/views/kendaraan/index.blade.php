@@ -2,31 +2,23 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
-    {{-- <style type="text/css">
-		.pagination li{
-			float: left;
-			list-style-type: none;
-			margin:5px;
-		}
-	</style> --}}
-
     <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col">
+        <div class="row mt-5">
+            <div class="col-xl-12 mb-5 mb-xl-0">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
-                            <div class="col-8">
-                                <h3 class="mb-0">Kendaraan</h3>
+                            <div class="col">
+                                <h3 class="mb-0">Data Kendaraan</h3>
                             </div>
-                            <div class="col-4 text-right">
-                                <a href="#" class="btn btn-sm btn-primary">Tambah Kendaraan</a>
+                            <div class="col text-right">
+                                <a href="{{ url('#') }}" class="btn btn-sm btn-primary">Tambah Data Kendaraan</a>
                             </div>
-                            <br><br><br>
-                            @if (count($kendaraan) > 0)
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                        </div>
+                    </div>
+                    @if (count($kendaraan) > 0)
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">No</th>
@@ -37,6 +29,7 @@
                                                 <th scope="col">Tgl Dipakai</th>
                                                 <th scope="col">Pemilik</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">Opsi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -71,36 +64,22 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <br />
-                                    {{-- Halaman : {{ $gedung->currentPage() }} <br/>
-                    Jumlah Data : {{ $gedung->total() }} <br/>
-                    Data Per Halaman : {{ $gedung->perPage() }} <br/>
-
-
-                    {{ $gedung->links() }} --}}
-
-                                </div>
-                            @else
-                                <br>
-                                <div class="col-12 text-center">
-                                    <span class="badge badge-warning">Belum ada data</span>
-                                </div>
-                            @endif
-                            <div class="card-footer py-4">
-                                <nav class="d-flex justify-content-end" aria-label="...">
-
-                                </nav>
-                            </div>
                         </div>
-                    </div>
+                    @else
+                        <br>
+                        <div class="col-12 text-center">
+                            <span class="badge badge-warning">Belum ada data</span>
+                        </div>
+                    @endif
                 </div>
-
-                @include('layouts.footers.auth')
             </div>
-        @endsection
+        </div>
+        @include('layouts.footers.auth')
+    </div>
+@endsection
 
-        @push('js')
-            <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
-            <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-            <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        @endpush
+@push('js')
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+@endpush

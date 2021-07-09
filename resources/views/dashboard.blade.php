@@ -11,7 +11,7 @@
                         <div class="row align-items-center">
                             <div class="col">
 
-                                <img src="{{ asset('images') }}/ub_logo.png" />
+                                <img src="{{ asset('images') }}/logo.png" />
 
                             </div>
                         </div>

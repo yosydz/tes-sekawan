@@ -12,7 +12,7 @@
                                 <h3 class="mb-0">Data Peminjam</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ url('#') }}" class="btn btn-md btn-primary">Tambah Data Peminjam</a>
+                                <a href="{{ url('#') }}" class="btn btn-sm btn-primary">Tambah Data Peminjam</a>
                             </div>
                         </div>
                     </div>
@@ -26,6 +26,7 @@
                                         <th scope="col">Umur</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Jabatan</th>
+                                        <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
