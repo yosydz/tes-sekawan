@@ -9,34 +9,32 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Data Supir</h3>
+                                <h3 class="mb-0">Data Operator</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ route('supir.create') }}" class="btn btn-sm btn-primary">Tambah Data Supir</a>
+                                <a href="{{ route('operator.create') }}" class="btn btn-sm btn-primary">Tambah Data Operator</a>
                             </div>
                         </div>
                     </div>
-                    @if (count($supir) > 0)
+                    @if (count($operator) > 0)
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama supir</th>
-                                        <th scope="col">Umur</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">Tgl Verifikasi</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($supir as $obj)
+                                    @foreach ($operator as $k)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $obj->nama }}</td>
-                                            <td>{{ $obj->umur }}</td>
-                                            <td>{{ $obj->email }}</td>
-                                            <td>{{ $obj->alamat }}</td>
+                                            <td>{{ $k->name }}</td>
+                                            <td>{{ $k->email }}</td>
+                                            <td>{{ $k->email_verified_at }}</td>
                                             <td class="text-right">
                                                 <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#"
@@ -47,8 +45,8 @@
                                                     <div
                                                         class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('supir.edit', $obj->id) }}">Edit</a>
-                                                        <form class="d-inline" method="POST" action="{{ route('supir.destroy', $obj->id) }}">
+                                                            href="{{ route('operator.edit', $k->id) }}">Edit</a>
+                                                        <form class="d-inline" method="POST" action="{{ route('operator.destroy', $k->id) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                              <button type="submit" class="dropdown-item">Delete</button>

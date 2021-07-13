@@ -1,8 +1,9 @@
 <?php
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
@@ -14,13 +15,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'admin',
+        $admin = User::create([
+            'name' => 'Admin',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('admin'),
-            'created_at' => now(),
-            'updated_at' => now()
+            'password' => bcrypt('admin')
         ]);
+
+        $admin->assignRole('admin');
+
+        $operator = User::create([
+            'name' => 'Operator',
+            'email' => 'operator@operator.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('operator')
+        ]);
+
+        $operator->assignRole('operator');
     }
 }

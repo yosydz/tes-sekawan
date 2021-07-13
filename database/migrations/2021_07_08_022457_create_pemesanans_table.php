@@ -15,7 +15,7 @@ class CreatePemesanansTable extends Migration
     {
         Schema::create('pemesanan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('peminjam_id');
+            $table->unsignedBigInteger('peminjam_id'); 
             $table->unsignedBigInteger('kendaraan_id');
             $table->unsignedBigInteger('supir_id');
             $table->date('tgl_pemesanan');

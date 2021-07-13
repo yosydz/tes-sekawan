@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gedung;
 use App\Models\Peminjam;
 use Illuminate\Http\Request;
 
@@ -28,8 +27,7 @@ class PeminjamController extends Controller
      */
     public function create()
     {
-
-
+        return view("peminjam.create");
     }
 
     /**
@@ -40,8 +38,16 @@ class PeminjamController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'jabatan' => 'required',
+            'umur' => 'required'
+        ]);
 
+        Peminjam::create($request->all());
 
+        return redirect()->route('peminjam.index')->with('success', 'peminjam created successfully');
     }
 
     /**
@@ -61,9 +67,10 @@ class PeminjamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_peminjam)
+    public function edit(Peminjam $peminjam)
     {
-
+        // dd($peminjam);
+        return view('peminjam.edit')->with('peminjam', $peminjam);
     }
 
     /**
@@ -73,9 +80,17 @@ class PeminjamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_peminjam)
+    public function update(Request $request, Peminjam $peminjam)
     {
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'jabatan' => 'required',
+            'umur' => 'required',
+        ]);
 
+        $peminjam->update($request->all());
+        return redirect()->route('peminjam.index')->with('success', 'Peminjam has been updated');
     }
 
     /**
@@ -84,8 +99,10 @@ class PeminjamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_peminjam)
+    public function destroy(Peminjam $peminjam)
     {
-
+        $delete = $peminjam->delete();
+        // dd($peminjam);
+        return redirect()->route('peminjam.index')->with('success','Peminjam has been deleted successfully');
     }
 }

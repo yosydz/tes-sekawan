@@ -17,6 +17,13 @@ class Peminjam extends Model
     */
     protected $table = 'peminjam';
 
+    protected $fillable = [
+        'nama',
+        'email',
+        'jabatan',
+        'umur'
+    ];
+
     /**
     * The primary key for the model.
     *

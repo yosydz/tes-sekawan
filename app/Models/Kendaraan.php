@@ -10,4 +10,13 @@ class Kendaraan extends Model
     use HasFactory;
 
     protected $table = "kendaraan";
+    protected $fillable = [
+        'nama',
+        'jenis_bbm',
+        'avg_bbm',
+        'tgl_service',
+        'tgl_dipakai',
+        'pemilik',
+        'status'
+    ];
 }

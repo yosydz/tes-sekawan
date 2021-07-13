@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TimController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupirController;
 use App\Http\Controllers\PenjagaController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\PemesananController;
 
 // use App\Http\Controllers\KegiatanController;
 
@@ -37,14 +40,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
     // HOME
-    Route::get('/home', [KendaraanController::class, 'index'])->name('home');
+    Route::middleware('role:admin')->get('/home', [HomeController::class, 'index'])->name('home');
+
+    // PEMESANAN
+    Route::resource('pemesanan', PemesananController::class);
 
     //KENDARAAN
-    Route::resource('kendaraan', KendaraanController::class);
+    Route::middleware('role:admin')->resource('kendaraan', KendaraanController::class);
 
     //PEMINJAM
-    Route::resource('peminjam', PeminjamController::class);
+    Route::middleware('role:admin')->resource('peminjam', PeminjamController::class);
 
     //SUPIR
-    Route::resource('supir', SupirController::class);
+    Route::middleware('role:admin')->resource('supir', SupirController::class);
+
+    //OPERATOR
+    Route::middleware('role:admin')->resource('operator', OperatorController::class);
+
 });

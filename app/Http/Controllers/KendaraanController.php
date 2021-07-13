@@ -26,7 +26,7 @@ class KendaraanController extends Controller
      */
     public function create()
     {
-        //
+         return view("kendaraan.create");
     }
 
     /**
@@ -37,7 +37,19 @@ class KendaraanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'jenis_bbm' => 'required',
+            'avg_bbm' => 'required',
+            'tgl_service' => 'required',
+            'tgl_dipakai' => 'required',
+            'pemilik' => 'required',
+            'status' => 'required',
+        ]);
+
+        Kendaraan::create($request->all());
+
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan created successfully');
     }
 
     /**
@@ -59,7 +71,7 @@ class KendaraanController extends Controller
      */
     public function edit(Kendaraan $kendaraan)
     {
-        //
+        return view('kendaraan.edit')->with('kendaraan', $kendaraan);
     }
 
     /**
@@ -71,7 +83,18 @@ class KendaraanController extends Controller
      */
     public function update(Request $request, Kendaraan $kendaraan)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'jenis_bbm' => 'required',
+            'avg_bbm' => 'required',
+            'tgl_service' => 'required',
+            'tgl_dipakai' => 'required',
+            'pemilik' => 'required',
+            'status' => 'required',
+        ]);
+
+        $kendaraan->update($request->all());
+        return redirect()->route('kendaraan.index')->with('success', 'Kendaraan has been updated');
     }
 
     /**
@@ -82,6 +105,8 @@ class KendaraanController extends Controller
      */
     public function destroy(Kendaraan $kendaraan)
     {
-        //
+        $delete = $kendaraan->delete();
+        // dd($kendaraan);
+        return redirect()->route('kendaraan.index')->with('success','Kendaraan has been deleted successfully');
     }
 }

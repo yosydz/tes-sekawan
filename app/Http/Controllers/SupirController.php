@@ -14,8 +14,7 @@ class SupirController extends Controller
      */
     public function index()
     {
-        $supir = supir::all();
-        // $headerdata = supir::orderBy('kapasitas', "DESC")->get();
+        $supir = Supir::all();
         return view('supir.index')->with('supir', $supir);
     }
 
@@ -26,7 +25,7 @@ class SupirController extends Controller
      */
     public function create()
     {
-        //
+        return view("supir.create");
     }
 
     /**
@@ -37,7 +36,16 @@ class SupirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'umur' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        Supir::create($request->all());
+
+        return redirect()->route('supir.index')->with('success', 'supir created successfully');
     }
 
     /**
@@ -59,7 +67,7 @@ class SupirController extends Controller
      */
     public function edit(Supir $supir)
     {
-        //
+        return view('supir.edit')->with('supir', $supir);
     }
 
     /**
@@ -71,7 +79,15 @@ class SupirController extends Controller
      */
     public function update(Request $request, Supir $supir)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'umur' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        $supir->update($request->all());
+        return redirect()->route('supir.index')->with('success', 'Supir has been updated');
     }
 
     /**
@@ -82,6 +98,8 @@ class SupirController extends Controller
      */
     public function destroy(Supir $supir)
     {
-        //
+        $delete = $supir->delete();
+        // dd($supir);
+        return redirect()->route('supir.index')->with('success','supir has been deleted successfully');
     }
 }

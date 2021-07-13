@@ -83,25 +83,50 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('kendaraan') || request()->is('kendaraan/tambah') || request()->is('kendaraan/edit/*') ? 'active' : '' }}"
-                        href="{{ route('kendaraan.index') }}">
-                        <i class="fa fa-car text-blue"></i> {{ __('Kendaraan') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('supir') || request()->is('supir/tambah') || request()->is('supir/edit/*') ? 'active' : '' }}"
-                        href="{{ route('supir.index') }}">
-                        <i class="fa fa-user-secret text-blue"></i> {{ __('Data Supir') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('peminjam') || request()->is('peminjam/tambah') || request()->is('peminjam/edit/*') ? 'active' : '' }}"
-                        href="{{ route('peminjam.index') }}">
-                        <i class="fa fa-user text-blue"></i> {{ __('Peminjam') }}
-                    </a>
-                </li>
-            </ul>
+                 @role('admin')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="{{ route('home') }}">
+                            <i class="fa fa-home text-primary"></i> {{ __('Dashboard') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('pemesanan') || request()->is('pemesanan/tambah') || request()->is('pemesanan/edit/*') ? 'active' : '' }}"
+                            href="{{ route('pemesanan.index') }}">
+                            <i class="fa fa-list text-blue"></i> {{ __('Pemesanan') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('kendaraan') || request()->is('kendaraan/tambah') || request()->is('kendaraan/edit/*') ? 'active' : '' }}"
+                            href="{{ route('kendaraan.index') }}">
+                            <i class="fa fa-car text-blue"></i> {{ __('Kendaraan') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('supir') || request()->is('supir/tambah') || request()->is('supir/edit/*') ? 'active' : '' }}"
+                            href="{{ route('supir.index') }}">
+                            <i class="fa fa-users text-blue"></i> {{ __('Data Supir') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('peminjam') || request()->is('peminjam/tambah') || request()->is('peminjam/edit/*') ? 'active' : '' }}"
+                            href="{{ route('peminjam.index') }}">
+                            <i class="fa fa-user text-blue"></i> {{ __('Peminjam') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('operator') || request()->is('operator/tambah') || request()->is('operator/edit/*') ? 'active' : '' }}"
+                            href="{{ route('operator.index') }}">
+                            <i class="fa fa-users text-blue"></i> {{ __('Data Operator') }}
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('pemesanan') || request()->is('pemesanan/tambah') || request()->is('pemesanan/edit/*') ? 'active' : '' }}"
+                            href="{{ route('pemesanan.index') }}">
+                            <i class="fa fa-list text-blue"></i> {{ __('Pemesanan') }}
+                        </a>
+                    </li>
+                @endrole
             </ul>
         </div>
     </div>

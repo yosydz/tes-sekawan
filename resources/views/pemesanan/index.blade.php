@@ -9,35 +9,40 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Data Supir</h3>
+                                <h3 class="mb-0">Data Pemesanan</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ route('supir.create') }}" class="btn btn-sm btn-primary">Tambah Data Supir</a>
+                                @role('admin')
+                                <a href="{{ route('pemesanan.create') }}" class="btn btn-sm btn-primary">Tambah Data Pemesanan</a>
+                                @endrole
                             </div>
                         </div>
                     </div>
-                    @if (count($supir) > 0)
+                    @if (count($pemesanan) > 0)
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama supir</th>
-                                        <th scope="col">Umur</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Nama Peminjam</th>
+                                        <th scope="col">Nama Kendaraan</th>
+                                        <th scope="col">Nama Supir</th>
+                                        <th scope="col">Tgl Pemesanan</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($supir as $obj)
+                                    @foreach ($pemesanan as $k)
+                                    {{-- {{ dd($k->penjaga->nama_penjaga) }} --}}
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $obj->nama }}</td>
-                                            <td>{{ $obj->umur }}</td>
-                                            <td>{{ $obj->email }}</td>
-                                            <td>{{ $obj->alamat }}</td>
-                                            <td class="text-right">
+                                            <td>{{ $k->nama_peminjam }}</td>
+                                            <td>{{ $k->nama_kendaraan }}</td>
+                                            <td>{{ $k->nama_supir }}</td>
+                                            <td>{{ $k->tgl_pemesanan }}</td>
+                                            <td>{{ $k->status }}</td>
+                                           <td class="text-right">
                                                 <div class="dropdown">
                                                     <a class="btn btn-sm btn-icon-only text-light" href="#"
                                                         role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -47,12 +52,14 @@
                                                     <div
                                                         class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('supir.edit', $obj->id) }}">Edit</a>
-                                                        <form class="d-inline" method="POST" action="{{ route('supir.destroy', $obj->id) }}">
+                                                            href="{{ route('pemesanan.edit', $k->id) }}">Edit</a>
+                                                        @role('admin')
+                                                        <form class="d-inline" method="POST" action="{{ route('pemesanan.destroy', $k->id) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                              <button type="submit" class="dropdown-item">Delete</button>
                                                         </form>
+                                                        @endrole
                                                     </div>
                                                 </div>
                                             </td>
@@ -64,7 +71,7 @@
                     @else
                         <br>
                         <div class="col-12 text-center">
-                            <span class="badge badge-warning">Belum ada data</span>
+                            <span class="badge badge-warning mb-5">Belum ada data</span>
                         </div>
                     @endif
                 </div>

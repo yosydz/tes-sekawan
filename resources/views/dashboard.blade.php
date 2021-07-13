@@ -2,37 +2,52 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
     <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col-xl-8 mb-5 mb-xl-0">
-                <div class="card bg-gradient-default shadow">
-                    <div class="card-header bg-transparent">
-                        <div class="row align-items-center">
-                            <div class="col">
-
-                                <img src="{{ asset('images') }}/logo.png" />
-
-                            </div>
-                        </div>
-                        <div class="row align-item-left">
-                            <div class="col">
-                                <h2 class="text-white mb-0">Bagian Umum</h2>
-                                <h5 class="text-white ls-1 mb-1 text-align-right">Subag Rumah Tangga BUK UB, lt.4 Gedung Rektorat UB</h5>
-
-                                <br>
-                                <h3 class="text-white mb-0">Bagaimana cara meminjam gedung di UB?</h3>
-                        <p class="text-white">Ajukan surat permohonan ke Kabag Umum dan HTL UB melalui Sekretaris Bagian UHTL di gedung Rektorat Lt.4. Petugas akan mengecek apakah gedung/fasilitas masih kosong atau sudah ada yang memimjam. Jika belum terpakai maka akan dibalas bisa dipakai, dan sebaliknya. Alur peminjaman gedung/fasilitas bisa di akses melalui: http://buk.ub.ac.id/wp-content/uploads/2014/05/13.-SOP-Peminjaman-Gedung.pdf.</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row mt-5">
+            <div class="col-xl-12 mb-5 mb-xl-0">
+                <div class="card transparent">
+                    <div class="card bg-default">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
+                  <h5 class="h3 text-white mb-0">Sales value</h5>
+                </div>
+                <div class="col">
+                  <ul class="nav nav-pills justify-content-end">
+                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
+                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
+                        <span class="d-none d-md-block">Month</span>
+                        <span class="d-md-none">M</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
+                      <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
+                        <span class="d-none d-md-block">Week</span>
+                        <span class="d-md-none">W</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Chart -->
+              <div class="chart">
+                <!-- Chart wrapper -->
+                <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
                 </div>
             </div>
+        </div>
         @include('layouts.footers.auth')
     </div>
-
+@endsection
 
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="{{ asset('argon') }}/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 @endpush

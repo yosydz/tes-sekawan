@@ -12,7 +12,7 @@
                                 <h3 class="mb-0">Data Peminjam</h3>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ url('#') }}" class="btn btn-sm btn-primary">Tambah Data Peminjam</a>
+                                <a href="{{ route('peminjam.create') }}" class="btn btn-sm btn-primary">Tambah Data Peminjam</a>
                             </div>
                         </div>
                     </div>
@@ -39,15 +39,20 @@
                                             <td>{{ $obj->jabatan }}</td>
                                             <td class="text-right">
                                                 <div class="dropdown">
-                                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <div
+                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                         <a class="dropdown-item"
-                                                            href="#">Edit</a>
-                                                        <a class="dropdown-item"
-                                                            href="#">Hapus</a>
+                                                            href="{{ route('peminjam.edit', $obj->id) }}">Edit</a>
+                                                        <form class="d-inline" method="POST" action="{{ route('peminjam.destroy', $obj->id) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                             <button type="submit" class="dropdown-item">Delete</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>

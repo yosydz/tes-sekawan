@@ -24,7 +24,6 @@
                     <div class="card-body px-lg-5 py-lg-5">
                         <form role="form" method="POST" action="{{ route('register') }}">
                             @csrf
-
                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <div class="input-group input-group-alternative mb-3">
                                     <div class="input-group-prepend">
